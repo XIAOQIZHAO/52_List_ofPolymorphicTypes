@@ -5,10 +5,6 @@
  */
 
 public class List_inArraySlots {
-
-    private int[]    intElements;
-    private double[] doubleElements;
-    private String[] stringElements;
     private int filledElements; // the number of elements in this list
     
     /* type identifier for each element
@@ -18,7 +14,6 @@ public class List_inArraySlots {
         Optional extra education in programming (not comp sci):
             replace these "magic numbers" with an "enumerated type".
      */
-    private int[] typeOfElements;
     private Object[] elements;
 
     private static final int INITIAL_CAPACITY = 10;
@@ -28,7 +23,6 @@ public class List_inArraySlots {
      */
     public List_inArraySlots() {
 	elements = new Object[INITIAL_CAPACITY];
-	typeOfElements = new int[INITIAL_CAPACITY];
     }
 
 
@@ -61,6 +55,7 @@ public class List_inArraySlots {
                        , int    intValue
                        , double doubleValue
                        , String stringValue
+			 , boolean booleanValue
                        ) {
 	 if (filledElements == elements.length) expand();
 	 
@@ -68,10 +63,11 @@ public class List_inArraySlots {
 	     elements[filledElements] = intValue;
 	 else if (type == 1)
 	     elements[filledElements] = doubleValue;
-	 else
+	 else if (type == 2)
 	     elements[filledElements] = stringValue;
+	 else
+	     elements[filledElements] = booleanValue;
 	 
-	 typeOfElements[filledElements] = type;
 	 filledElements++;
 	 return true;
      }
@@ -94,4 +90,10 @@ public class List_inArraySlots {
 	    bigger[i] = elements[i];
 	elements = bigger;
      }
+
+    public Object get(int index){
+	if (index > filledElements)
+	    return "N/A";
+	return elements[index];
+    }
 }
